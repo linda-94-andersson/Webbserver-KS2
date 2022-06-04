@@ -2,22 +2,22 @@
 
 ## För att uppnå Godkänt är kraven att:
 
-- Den ska vara byggd med ramverket Express ()
+- Den ska vara byggd med ramverket Express (X)
 ### API:et ska ha följande endpoints:
-- GET /books - Hämta alla böcker ()
+- GET /books - Hämta alla böcker (X)
 - GET /books/:id - Hämta en bok ()
 - POST /books - Skapa en bok ()
 - PUT /books/:id - Ändra en bok (full) ()
 - PATCH /books/:id - Ändra en bok (partial) ()
 - DELETE /books/:id - Ta bort en bok ()
-- API:et ska endast ta emot och skicka data i JSON-format ()
-- API:et ska svara med lämpligt meddelande och statuskod om allt gått väl ()
-- API:et ska svara med lämpligt meddelande och statuskod om något går fel, exempelvis om användaren skickar in fel strukturerad data ()
+- API:et ska endast ta emot och skicka data i JSON-format (X)
+- API:et ska svara med lämpligt meddelande och statuskod om allt gått väl (X)
+- API:et ska svara med lämpligt meddelande och statuskod om något går fel, exempelvis om användaren skickar in fel strukturerad data (X)
 - API:et ska lagra och läsa data från en SQL-databas ()
 ### API:et ska följa MVC-modellen:
-- Model - accessar databasen ()
+- Model - accessar databasen (X)
 - (View) - Din frontend ()
-- Controller - Interagerar med modellen och returnerar responsen till användaren (servitrisen) ()
+- Controller - Interagerar med modellen och returnerar responsen till användaren (servitrisen) (X)
 
 ## För att uppnå Väl Godkänt behöver du åtminstone implementera punkt 1:
 
