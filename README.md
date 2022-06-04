@@ -26,6 +26,6 @@
         * POST /auth/login - Logga in en användare och svara med en JWT-token ()
         * POST /users/lend - Låna ut en bok (authorized route) ()
         * POST /users/return - Lämna tillbaka en bok (authorized route) ()
-        * POST /me - Användarens aktiva lånade böcker och användar-info (authorized route) ()
+        * POST/GET /me - Användarens aktiva lånade böcker och användar-info (authorized route) ()
 #### 2, Endpoints för /books ska även innehålla antalet böcker tillgängliga för utlåning ()
 #### 3, Skriv en egen logging-middleware som sparar loggar med relevant info i en eller enskilda filer (tidsstämpel, request-metod, route, status) ()
