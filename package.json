@@ -1,0 +1,27 @@
+{
+  "name": "webbserver-ks2",
+  "version": "1.0.0",
+  "description": "Kunskapskontroll 2 Webbserver & Databaser",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/linda-94-andersson/Webbserver-KS2.git"
+  },
+  "keywords": [],
+  "author": "Linda Andersson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/linda-94-andersson/Webbserver-KS2/issues"
+  },
+  "homepage": "https://github.com/linda-94-andersson/Webbserver-KS2#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "morgan": "^1.10.0",
+    "uuid": "^8.3.2"
+  }
+}
