@@ -2,8 +2,8 @@ const uuid = require("uuid");
 
 const model = require("../models/books.model");
 
-function getBooks(req, res) {
-    const result = model.findAll();
+async function getBooks(req, res) {
+    const result = await model.findAll();
     res.json(result);
 }
 
