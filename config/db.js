@@ -21,7 +21,6 @@ CREATE TABLE IF NOT EXISTS users
   )
 `;
 
-
 const db = new sqlite3.Database("../db.sqlite", (error) => {
     if (error) {
         console.error(error.message);
@@ -53,7 +52,5 @@ const db = new sqlite3.Database("../db.sqlite", (error) => {
         })
     });
 });
-
-
 
 module.exports = db; 
