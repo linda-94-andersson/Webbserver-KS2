@@ -2,7 +2,7 @@ const sqlite3 = require("sqlite3").verbose();
 const md5 = require("md5");
 
 const booksStmt = `
-CREATE TABLE books 
+CREATE TABLE IF NOT EXISTS books 
 (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title TEXT UNIQUE,
@@ -12,7 +12,7 @@ CREATE TABLE books
 `;
 
 const usersStmt = `
-CREATE TABLE users 
+CREATE TABLE IF NOT EXISTS users 
 (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     username TEXT,
@@ -21,6 +21,7 @@ CREATE TABLE users
   )
 `;
 
+
 const db = new sqlite3.Database("../db.sqlite", (error) => {
     if (error) {
         console.error(error.message);
@@ -28,22 +29,29 @@ const db = new sqlite3.Database("../db.sqlite", (error) => {
     }
     db.run(booksStmt, (error) => {
         if (error) {
-            // console.error(error.message);
-        } else {
-            const insert = "INSERT INTO books (title, author, genre) VALUES (?, ?, ?)"
-            db.run(insert, ["Surprised by sin: the reader in Paradise lost.", "Fish, Stanley Eugene", "History and criticism"])
+            console.error(error.message);
+            throw error;
         }
-    })
+        const insert = "INSERT INTO books (title, author, genre) VALUES (?, ?, ?)"
+        db.run(insert, ["Surprised by sin: the reader in Paradise lost.", "Fish, Stanley Eugene", "History and criticism"], (error) => {
+            if (error) {
+                console.error(error);
+            }
+        })
+    });
 
     db.run(usersStmt, (error) => {
         if (error) {
-            // console.error(error.message);
-            //throw error;
-        } else {
-            const insert = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)"
-            db.run(insert, ["ryandahl", "ryan@dahl.dk", md5("Macke123")])
+            console.error(error.message);
+            throw error;
         }
-    }) 
+        const insert = "INSERT INTO users (username, email, password) VALUES (?, ?, ?)"
+        db.run(insert, ["ryandahl", "ryan@dahl.dk", md5("Macke123")], (error) => {
+            if (error) {
+                console.error(error);
+            }
+        })
+    });
 });
 
 
