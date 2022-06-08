@@ -4,11 +4,18 @@ const model = require("../models/books.model");
 
 async function getBooks(req, res) {
     const result = await model.findAll();
-    res.json(result);
+    if(!result){
+        return res.status(404).send("Could not get the books"); 
+    }
+    res.status(200).json(result);
 }
 
-function getBook(req, res) {
-
+async function getBook(req, res) {
+    const result = await model.findOne(req.params.id);
+    if (!result) {
+        return res.status(404).send("No ID found");
+    }
+    res.status(200).json(result);
 }
 
 function addBook(req, res) {
