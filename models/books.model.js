@@ -1,6 +1,5 @@
 const db = require("../config/db");
 
-
 /**
  * {
  * id: number,
@@ -11,6 +10,7 @@ const db = require("../config/db");
  * }
  */
 
+//find = GET
 function findAll() {
     const sql = "SELECT * FROM books";
 
@@ -25,6 +25,7 @@ function findAll() {
     })
 }
 
+//find = GET/:id
 function findOne(id) {
     const sql = "SELECT * FROM books WHERE id = ?";
 
@@ -39,6 +40,7 @@ function findOne(id) {
     })
 }
 
+//add = POST
 function addOne(book) {
     const sql = "INSERT INTO books (title, author, genre) VALUES (?,?,?)";
 
@@ -54,15 +56,36 @@ function addOne(book) {
 }
 
 //change = PUT
-function changeOne(book) {
-const sql = "";
+function changeOne(id, title, author, genre) {
+    const sql = "UPDATE books SET title = ?, author = ?, genre = ? WHERE id = ?";
+
+    return new Promise((resolve, reject) => {
+        db.run(sql, [title, author, genre, id], function (error) {
+            if (error) {
+                console.error(error.message);
+                reject(error);
+            }
+            resolve(this);
+        })
+    })
 }
 
 //manage = PATCH
-function manageOne() {
+function manageOne(id, title, author, genre) {
+    const sql = "UPDATE books SET title = COALESCE(?, title), author = COALESCE(?, author), genre = COALESCE(?, genre) WHERE id = ?";
 
+    return new Promise((resolve, reject) => {
+        db.run(sql, [title, author, genre, id], function (error) {
+            if (error) {
+                console.error(error.message);
+                reject(error);
+            }
+            resolve(this);
+        })
+    })
 }
 
+//delete = DELETE
 function deleteOne(id) {
     const sql = "DELETE FROM books WHERE id = ?";
 
