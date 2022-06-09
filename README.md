@@ -22,8 +22,8 @@
 ## För att uppnå Väl Godkänt behöver du åtminstone implementera punkt 1:
 
 #### 1, API:et ska även ha följande routes:
-        * POST /auth/register - Registrera en användare ()
-        * POST /auth/login - Logga in en användare och svara med en JWT-token ()
+        * POST /auth/register - Registrera en användare (X)
+        * POST /auth/login - Logga in en användare och svara med en JWT-token (X)
         * POST /users/lend - Låna ut en bok (authorized route) ()
         * POST /users/return - Lämna tillbaka en bok (authorized route) ()
         * POST/GET /me - Användarens aktiva lånade böcker och användar-info (authorized route) ()
