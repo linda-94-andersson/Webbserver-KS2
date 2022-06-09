@@ -46,7 +46,11 @@ async function changeBook(req, res) {
         return res.status(400).json({ message: "All data must be send with the request" });
     }
     model.changeOne(req.params.id, req.body.title, req.body.author, req.body.genre);
-    const result = await model.findOne(req.params.id);
+    const { id } = req.params;
+    const result = await model.findOne(id);
+    if (!result) {
+        return res.status(404).json({ message: `Book with ID ${id} not found` });
+    }
     res.status(200).json({ message: "Book succesfully changed", updated: req.body });
 }
 
@@ -56,7 +60,11 @@ async function manageBook(req, res) {
         return res.status(400).json({ message: "Data must be send with the request" });
     }
     model.manageOne(req.params.id, req.body.title, req.body.author, req.body.genre);
-    const result = await model.findOne(req.params.id);
+    const { id } = req.params;
+    const result = await model.findOne(id);
+    if (!result) {
+        return res.status(404).json({ message: `Book with ID ${id} not found` });
+    }
     res.status(200).json({ info: "Book succesfully managed", updated: req.body });
 }
 

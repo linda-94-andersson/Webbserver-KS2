@@ -30,7 +30,7 @@ function findOne(id) {
     const sql = "SELECT * FROM books WHERE id = ?";
 
     return new Promise((resolve, reject) => {
-        db.all(sql, id, (error, rows) => {
+        db.get(sql, id, (error, rows) => {
             if (error) {
                 console.error(error.message);
                 reject(error);
