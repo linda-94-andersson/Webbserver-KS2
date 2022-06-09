@@ -15,11 +15,11 @@ app.use(bodyParser.json());
 
 app.use(booksRouter);
 app.use(usersRouter);
-app.use(authRouter); 
+app.use(authRouter);
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
-    res.status(500).send("Something in the request is incorrect")
+    res.status(500).json({ message: "Something went wrong" });
 });
 
 app.listen(PORT, () => {
