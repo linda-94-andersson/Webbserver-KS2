@@ -21,15 +21,16 @@ async function getBook(req, res) {
 
 //POST
 async function addBook(req, res) {
-    const { title, author, genre } = req.body;
+    const { title, author, genre, qty } = req.body;
 
-    if (!title || !author || !genre) {
+    if (!title || !author || !genre || !qty) {
         return res.status(400).json({ message: "All data must be send with the request" });
     }
     const newBook = {
         title,
         author,
-        genre
+        genre,
+        qty
     };
     try {
         const result = await model.addOne(newBook);
@@ -42,10 +43,10 @@ async function addBook(req, res) {
 
 //PUT
 async function changeBook(req, res) {
-    if (!req.body.title || !req.body.author || !req.body.genre) {
+    if (!req.body.title || !req.body.author || !req.body.genre || !req.body.qty) {
         return res.status(400).json({ message: "All data must be send with the request" });
     }
-    model.changeOne(req.params.id, req.body.title, req.body.author, req.body.genre);
+    model.changeOne(req.params.id, req.body.title, req.body.author, req.body.genre, req.body.qty);
     const { id } = req.params;
     const result = await model.findOne(id);
     if (!result) {
@@ -56,10 +57,10 @@ async function changeBook(req, res) {
 
 //PATCH
 async function manageBook(req, res) {
-    if (!req.body.title && !req.body.author && !req.body.genre) {
+    if (!req.body.title && !req.body.author && !req.body.genre && !req.body.qty) {
         return res.status(400).json({ message: "Data must be send with the request" });
     }
-    model.manageOne(req.params.id, req.body.title, req.body.author, req.body.genre);
+    model.manageOne(req.params.id, req.body.title, req.body.author, req.body.genre, req.body.qty);
     const { id } = req.params;
     const result = await model.findOne(id);
     if (!result) {
