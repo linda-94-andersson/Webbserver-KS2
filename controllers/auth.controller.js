@@ -10,7 +10,7 @@ async function reg(req, res) {
         return res.status(400).json({ message: "All data must be send with the request" });
     }
 
-    const existingUser = await model.findOne(email);
+    const existingUser = await model.findEmail(email);
     if (existingUser) {
         return res.status(400).json({ message: "User already exist" });
     }
@@ -32,7 +32,7 @@ async function log(req, res) {
         return res.status(400).json({ message: "There must be an email and a password" });
     }
 
-    const existingUser = await model.findOne(email);
+    const existingUser = await model.findEmail(email);
     if (!existingUser) {
         return res.status(404).json({ message: "User does not exist" });
     }

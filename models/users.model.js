@@ -14,7 +14,7 @@ function findAll() {
     })
 }
 
-function findOne(email) {
+function findEmail(email) {
     const sql = "SELECT * FROM users WHERE email = ?";
 
     return new Promise((resolve, reject) => {
@@ -44,6 +44,6 @@ function addOne(user) {
 
 module.exports = {
     findAll,
-    findOne,
+    findEmail,
     addOne
 }
