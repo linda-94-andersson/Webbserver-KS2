@@ -55,6 +55,19 @@ function addOne(book) {
     })
 }
 
+function getTitle(title) {
+    const sql = "SELECT * FROM books WHERE title = ?";
+    return new Promise((resolve, reject) => {
+        db.get(sql, title, (error, rows) => {
+            if (error) {
+                console.error(error.message);
+                reject(error);
+            }
+            resolve(rows);
+        })
+    })
+}
+
 //change = PUT
 function changeOne(id, title, author, genre, qty) {
     const sql = "UPDATE books SET title = ?, author = ?, genre = ?, qty = ? WHERE id = ?";
@@ -104,6 +117,7 @@ module.exports = {
     findAll,
     findOne,
     addOne,
+    getTitle,
     changeOne,
     manageOne,
     deleteOne
