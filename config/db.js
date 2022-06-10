@@ -7,7 +7,8 @@ CREATE TABLE IF NOT EXISTS books
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title TEXT UNIQUE,
     author TEXT,
-    genre TEXT
+    genre TEXT,
+    qty INTEGER
 )
 `;
 
@@ -21,7 +22,24 @@ CREATE TABLE IF NOT EXISTS users
   )
 `;
 
-const db = new sqlite3.Database("../db.sqlite", (error) => {
+const loanStmt = `
+CREATE TABLE IF NOT EXISTS loans (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_book INTEGER,
+    id_user INTEGER,
+    timestamp INTEGER NOT NULL DEFAULT (unixepoch()),
+    CONSTRAINT fk_id_book
+        FOREIGN KEY(id_book) 
+        REFERENCES books(id)
+        ON DELETE CASCADE,
+    CONSTRAINT fk_id_user
+        FOREIGN KEY(id_user)
+        REFERENCES users(id)
+        ON DELETE CASCADE
+)
+`;
+
+const db = new sqlite3.Database("./db.sqlite", (error) => {
     if (error) {
         console.error(error.message);
         throw error;
@@ -31,8 +49,8 @@ const db = new sqlite3.Database("../db.sqlite", (error) => {
             console.error(error.message);
             throw error;
         }
-        const insert = "INSERT INTO books (title, author, genre) VALUES (?, ?, ?)"
-        db.run(insert, ["Surprised by sin: the reader in Paradise lost.", "Fish, Stanley Eugene", "History and criticism"], (error) => {
+        const insert = "INSERT INTO books (title, author, genre, qty) VALUES (?, ?, ?, ?)"
+        db.run(insert, ["Surprised by sin: the reader in Paradise lost.", "Fish, Stanley Eugene", "History and criticism", "5"], (error) => {
             if (error) {
                 console.error(error);
             }
@@ -51,6 +69,20 @@ const db = new sqlite3.Database("../db.sqlite", (error) => {
             }
         })
     });
+
+    db.run(loanStmt, (error) => {
+        if (error) {
+            console.error(error.message);
+            throw error;
+        }
+        //Jag skippar exempel på lån för att det förstör nedräkingen av antal böcker men har använts under utvecklingen
+        // const insert = "INSERT INTO loans (id_book, id_user) VALUES (?,?)"
+        // db.run(insert, [1, 1], (error) => {
+        //     if (error) {
+        //         console.error(error);
+        //     }
+        // })
+    })
 });
 
 module.exports = db; 
