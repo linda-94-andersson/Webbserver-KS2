@@ -24,8 +24,8 @@
 #### 1, API:et ska även ha följande routes:
         * POST /auth/register - Registrera en användare (X)
         * POST /auth/login - Logga in en användare och svara med en JWT-token (X)
-        * POST /users/lend - Låna ut en bok (authorized route) ()
-        * POST /users/return - Lämna tillbaka en bok (authorized route) ()
-        * POST/GET /me - Användarens aktiva lånade böcker och användar-info (authorized route) ()
-#### 2, Endpoints för /books ska även innehålla antalet böcker tillgängliga för utlåning ()
+        * POST /users/lend - Låna ut en bok (authorized route) (X)
+        * POST /users/return - Lämna tillbaka en bok (authorized route) (X)
+        * GET /me - Användarens aktiva lånade böcker och användar-info (authorized route) (X)
+#### 2, Endpoints för /books ska även innehålla antalet böcker tillgängliga för utlåning (X)
 #### 3, Skriv en egen logging-middleware som sparar loggar med relevant info i en eller enskilda filer (tidsstämpel, request-metod, route, status) ()
