@@ -23,10 +23,19 @@ CREATE TABLE IF NOT EXISTS users
 `;
 
 const loanStmt = `
-CREATE TABLE IF NOT EXISTS loans
-(
-    id_book TEXT,
-    id_user TEXT
+CREATE TABLE IF NOT EXISTS loans (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id_book INTEGER,
+    id_user INTEGER,
+    timestamp INTEGER NOT NULL DEFAULT (unixepoch()),
+    CONSTRAINT fk_id_book
+        FOREIGN KEY(id_book) 
+        REFERENCES books(id)
+        ON DELETE CASCADE,
+    CONSTRAINT fk_id_user
+        FOREIGN KEY(id_user)
+        REFERENCES users(id)
+        ON DELETE CASCADE
 )
 `;
 
@@ -66,12 +75,13 @@ const db = new sqlite3.Database("./db.sqlite", (error) => {
             console.error(error.message);
             throw error;
         }
-        const insert = "INSERT INTO loans (id_book, id_user) VALUES (?,?)"
-        db.run(insert, ["1", "1"], (error) => {
-            if (error) {
-                console.error(error);
-            }
-        })
+        //Jag skippar exempel på lån för att det förstör nedräkingen av antal böcker men har använts under utvecklingen
+        // const insert = "INSERT INTO loans (id_book, id_user) VALUES (?,?)"
+        // db.run(insert, [1, 1], (error) => {
+        //     if (error) {
+        //         console.error(error);
+        //     }
+        // })
     })
 });
 
