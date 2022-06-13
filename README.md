@@ -28,4 +28,4 @@
         * POST /users/return - Lämna tillbaka en bok (authorized route) (X)
         * GET /me - Användarens aktiva lånade böcker och användar-info (authorized route) (X)
 #### 2, Endpoints för /books ska även innehålla antalet böcker tillgängliga för utlåning (X)
-#### 3, Skriv en egen logging-middleware som sparar loggar med relevant info i en eller enskilda filer (tidsstämpel, request-metod, route, status) ()
+#### 3, Skriv en egen logging-middleware som sparar loggar med relevant info i en eller enskilda filer (tidsstämpel, request-metod, route, status) (X)

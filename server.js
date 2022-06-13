@@ -7,12 +7,16 @@ const usersRouter = require("./routers/users.router");
 const authRouter = require("./routers/auth.router");
 const meRouter = require("./routers/me.router");
 
+const logger = require("./middlewares/logger"); 
+
 const PORT = process.env.PORT || 5000;
 
 const app = express();
 
 app.use(cors());
 app.use(bodyParser.json());
+
+app.use(logger); 
 
 app.use(booksRouter);
 app.use(usersRouter);
