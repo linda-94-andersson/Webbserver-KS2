@@ -16,7 +16,7 @@
 - API:et ska lagra och läsa data från en SQL-databas (X)
 ### API:et ska följa MVC-modellen:
 - Model - accessar databasen (X)
-- (View) - Din frontend ()
+- (View) - Din frontend
 - Controller - Interagerar med modellen och returnerar responsen till användaren (servitrisen) (X)
 
 ## För att uppnå Väl Godkänt behöver du åtminstone implementera punkt 1:
