@@ -31,7 +31,7 @@ async function addBook(req, res) {
     }
     const existingBook = await model.getTitle(title);
     if (existingBook) {
-        res.status(409).json({ message: "Book already exist" });
+        return res.status(409).json({ message: "Book already exist" });
     }
     const newBook = {
         title,
